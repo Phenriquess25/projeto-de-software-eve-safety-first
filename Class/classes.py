@@ -1,70 +1,155 @@
-
 import uuid
 
-# 1. Cadastro de usuário
+# =========================
+# 1. USUARIO
+# =========================
 class Usuario:
-    def __init__(self, nome, email, cpf, senha, tipo):
-        self.id = uuid.uuid4()
-        self.nome = nome
+    def __init__(self, nome_completo, cpf, email, senha, telefone, tipo_usuario):
+        self.id_usuario = self._gerar_id_unico()
+        self.nome_completo = nome_completo
+        self.cpf = cpf 
         self.email = email
-        self.cpf = cpf
         self.senha = senha
-        self.tipo = tipo  # passageiro ou motorista
-
+        self.telefone = telefone
+        self.tipo_usuario = tipo_usuario
+        self.status_conta = False
+    
+    def _gerar_id_unico(self):
+        return str(uuid.uuid4())
+    
     def cadastrar(self):
-        print(f"Usuário {self.nome} cadastrado com sucesso")
-
-    def atualizar_perfil(self, nome, email):
-        self.nome = nome
-        self.email = email
-
-
-# 2. Login no sistema
-class Autenticacao:
-    def __init__(self, lista_usuarios):
-        self.lista_usuarios = lista_usuarios
-
-    def login(self, email, senha):
-        for user in self.lista_usuarios:
-            if user.email == email and user.senha == senha:
-                print("Login realizado com sucesso")
-                return user
-        print("Credenciais inválidas")
-        return None
+        print(f"{self.tipo_usuario.title()} {self.nome_completo} criado com ID: {self.id_usuario}")
+        return self
+    
+    def validar_documentos(self):
+        if self.tipo_usuario == "motorista":
+            print("Validando CNH e documentos do motorista...")
+        else:
+            print("Validando CPF e documentos do passageiro...")
+        return True
+    
+    def confirmar_conta(self):
+        self.status_conta = True
+        print(f"Conta de {self.tipo_usuario} confirmada com sucesso!")
 
 
-# 3. Solicitar corrida
-class Corrida:
-    def __init__(self, usuario, origem, destino):
+# =========================
+# HERANÇA USUARIO
+# =========================
+class Passageiro(Usuario):
+    def __init__(self, nome_completo, cpf, email, senha, telefone):
+        super().__init__(nome_completo, cpf, email, senha, telefone, "passageiro")
+        self.historico = []
+
+    def solicitar_corrida(self, origem, destino):
+        print(f"{self.nome_completo} solicitou corrida de {origem} para {destino}")
+
+    def mostrar_dados(self):
+        print("=== Dados do Passageiro ===")
+        print(f"Nome: {self.nome_completo}")
+        print(f"CPF: {self.cpf}")
+        print(f"Email: {self.email}")
+        print(f"Telefone: {self.telefone}")
+
+
+class Motorista(Usuario):
+    def __init__(self, nome_completo, cpf, email, senha, telefone, cnh,
+                 placa, modelo_veiculo):
+        super().__init__(nome_completo, cpf, email, senha, telefone, "motorista")
+        self.cnh = cnh
+        self.placa = placa
+        self.modelo_veiculo = modelo_veiculo
+        self.veiculo = None
+        self.cancelamentos = 0
+
+    def cadastrar_veiculo(self, veiculo):
+        self.veiculo = veiculo
+        print(f"Veículo {veiculo.tipo} cadastrado para {self.nome_completo}")
+
+    def mostrar_dados(self):
+        print("=== Dados do Motorista ===")
+        print(f"Nome: {self.nome_completo}")
+        print(f"CNH: {self.cnh}")
+        print(f"Placa: {self.placa}")
+        print(f"Modelo: {self.modelo_veiculo}")
+        if self.veiculo:
+            print(f"Tipo de veículo: {self.veiculo.tipo}")
+
+
+# =========================
+# 2. LOGIN
+# =========================
+class Login:
+    def __init__(self, usuario: Usuario):
         self.usuario = usuario
+
+    def autenticar(self, email, senha):
+        if self.usuario.email == email and self.usuario.senha == senha:
+            if self.usuario.status_conta:
+                print("Login realizado com sucesso!")
+                return True
+            else:
+                print("Conta não confirmada")
+        else:
+            print("Dados incorretos")
+        return False
+
+
+# =========================
+# 3. CORRIDA
+# =========================
+class Corrida:
+    def __init__(self, passageiro: Passageiro, origem, destino):
+        self.id_corrida = str(uuid.uuid4())
+        self.passageiro = passageiro
         self.origem = origem
         self.destino = destino
+        self.distancia = 0
         self.status = "pendente"
-        self.preco = 0
+        self.valor = 0
+        self.veiculo = None
 
-    def solicitar_corrida(self):
-        self.status = "solicitada"
-        print("Corrida solicitada")
+    def calcular_distancia(self):
+        self.distancia = 10
+        print(f"Distância calculada: {self.distancia} km")
 
-    def calcular_preco(self, distancia):
-        self.preco = distancia * 2
-        return self.preco
+    def escolher_veiculo(self, veiculo):
+        self.veiculo = veiculo
+        print(f"Veículo escolhido: {veiculo.tipo}")
+
+    def calcular_preco(self):
+        if not self.veiculo:
+            print("Escolha um veículo primeiro!")
+            return
+        
+        if self.distancia == 0:
+            self.calcular_distancia()
+
+        self.valor = self.veiculo.calcular_tarifa(self.distancia)
+        print(f"Preço da corrida: R${self.valor}")
+
+    def confirmar(self):
+        self.status = "confirmada"
+        print("Corrida confirmada")
 
 
-# 4. Visualização do motorista no mapa
+# =========================
+# 4. RASTREAMENTO
+# =========================
 class Rastreamento:
-    def __init__(self, motorista, localizacao):
-        self.motorista = motorista
-        self.localizacao = localizacao
+    def __init__(self, corrida: Corrida):
+        self.corrida = corrida
 
-    def atualizar_localizacao(self, nova_localizacao):
-        self.localizacao = nova_localizacao
+    def atualizar_localizacao(self, local):
+        print(f"Motorista está em: {local}")
 
-    def mostrar_posicao(self):
-        print(f"Motorista está em {self.localizacao}")
+    def calcular_tempo(self):
+        print("Tempo estimado: 5 minutos")
 
 
-# 5. Escolher tipo de veículo
+# =========================
+# 5. VEICULO (HERANÇA)
+# =========================
 class Veiculo:
     def __init__(self, tipo, preco_km):
         self.tipo = tipo
@@ -74,7 +159,24 @@ class Veiculo:
         return distancia * self.preco_km
 
 
-# 6. Sistema de pagamento
+class Moto(Veiculo):
+    def __init__(self):
+        super().__init__("Moto", 1.0)
+
+
+class Carro(Veiculo):
+    def __init__(self):
+        super().__init__("Carro", 2.0)
+
+
+class VeiculoVIP(Veiculo):
+    def __init__(self):
+        super().__init__("VIP", 4.0)
+
+
+# =========================
+# 6. PAGAMENTO (HERANÇA)
+# =========================
 class Pagamento:
     def __init__(self, valor, metodo):
         self.valor = valor
@@ -86,20 +188,53 @@ class Pagamento:
         print("Pagamento realizado com sucesso")
 
 
-# 7. Histórico de corridas
+class PagamentoPix(Pagamento):
+    def __init__(self, valor):
+        super().__init__(valor, "pix")
+
+    def processar_pagamento(self):
+        self.status = "aprovado"
+        print(f"Pagamento de R${self.valor} via PIX realizado com sucesso")
+
+
+class PagamentoCartao(Pagamento):
+    def __init__(self, valor):
+        super().__init__(valor, "cartao")
+
+    def processar_pagamento(self):
+        self.status = "aprovado"
+        print(f"Pagamento de R${self.valor} com cartão realizado com sucesso")
+
+
+class PagamentoDinheiro(Pagamento):
+    def __init__(self, valor):
+        super().__init__(valor, "dinheiro")
+
+    def processar_pagamento(self):
+        self.status = "pago na entrega"
+        print(f"Pagamento de R${self.valor} será feito em dinheiro")
+
+
+# =========================
+# 7. HISTORICO
+# =========================
 class Historico:
-    def __init__(self):
+    def __init__(self, usuario: Usuario):
+        self.usuario = usuario
         self.corridas = []
 
-    def adicionar_corrida(self, corrida):
+    def adicionar(self, corrida: Corrida):
         self.corridas.append(corrida)
 
-    def mostrar_historico(self):
+    def visualizar(self):
+        print(f"Histórico de {self.usuario.nome_completo}")
         for c in self.corridas:
-            print(f"{c.origem} -> {c.destino} | Status: {c.status}")
+            print(f"{c.origem} -> {c.destino} ({c.status})")
 
 
-# 8. Sistema de avaliação
+# =========================
+# 8. AVALIACAO
+# =========================
 class Avaliacao:
     def __init__(self, usuario, motorista, nota, comentario):
         self.usuario = usuario
@@ -108,16 +243,39 @@ class Avaliacao:
         self.comentario = comentario
 
     def avaliar(self):
-        print(f"Avaliação: {self.nota} estrelas - {self.comentario}")
+        print(f"{self.usuario.nome_completo} avaliou {self.motorista.nome_completo}")
+        print(f"Nota: {self.nota} - {self.comentario}")
 
 
-# 9. Controle de cancelamento de motoristas
+# =========================
+# 9. CONTROLE DE CANCELAMENTO
+# =========================
 class ControleCancelamento:
+    MOTIVOS_VALIDOS = [
+        "Problema no carro",
+        "Trânsito extremo",
+        "Emergência"
+    ]
+
     def __init__(self, limite_por_dia):
         self.limite = limite_por_dia
         self.cancelamentos = 0
 
+    def mostrar_motivos(self):
+        print("Motivos disponíveis:")
+        for m in self.MOTIVOS_VALIDOS:
+            print("-", m)
+
     def cancelar_corrida(self, motivo):
+        if not motivo or motivo.strip() == "":
+            print("Erro: é obrigatório informar o motivo do cancelamento")
+            return
+
+        if motivo not in self.MOTIVOS_VALIDOS:
+            print("Erro: motivo inválido")
+            self.mostrar_motivos()
+            return
+
         if self.cancelamentos < self.limite:
             self.cancelamentos += 1
             print(f"Corrida cancelada. Motivo: {motivo}")
@@ -125,16 +283,19 @@ class ControleCancelamento:
             print("Limite de cancelamentos atingido")
 
 
-# 10. Suporte ao cliente
+# =========================
+# 10. SUPORTE
+# =========================
 class Suporte:
-    def __init__(self):
-        self.tickets = []
+    def __init__(self, usuario: Usuario):
+        self.usuario = usuario
+        self.mensagens = []
 
-    def abrir_ticket(self, usuario, mensagem):
-        ticket = {"usuario": usuario.nome, "mensagem": mensagem}
-        self.tickets.append(ticket)
-        print("Ticket aberto com sucesso")
+    def enviar(self, mensagem):
+        self.mensagens.append(mensagem)
+        print("Mensagem enviada ao suporte")
 
-    def listar_tickets(self):
-        for t in self.tickets:
-            print(t)
+    def historico(self):
+        print("Mensagens:")
+        for m in self.mensagens:
+            print("-", m)
