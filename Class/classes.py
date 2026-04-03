@@ -63,6 +63,7 @@ class Usuario:
 
         if self.tipo_usuario == "motorista":
             print("Validando CNH e documentos do motorista...")
+            #verificaçao do cnh
         else:
             print("Validando CPF e documentos do passageiro...")
 
