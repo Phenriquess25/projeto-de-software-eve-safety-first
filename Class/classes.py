@@ -1,4 +1,31 @@
 import uuid
+import re
+
+# =========================
+# FUNÇÕES DE VALIDAÇÃO
+# =========================
+def validar_cpf(cpf):
+    cpf = re.sub(r'\D', '', cpf)
+
+    if len(cpf) != 11:
+        return False
+
+    if cpf == cpf[0] * 11:
+        return False
+
+    soma = sum(int(cpf[i]) * (10 - i) for i in range(9))
+    dig1 = (soma * 10 % 11) % 10
+
+    soma = sum(int(cpf[i]) * (11 - i) for i in range(10))
+    dig2 = (soma * 10 % 11) % 10
+
+    return dig1 == int(cpf[9]) and dig2 == int(cpf[10])
+
+
+def validar_email(email):
+    padrao = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(padrao, email) is not None
+
 
 # =========================
 # 1. USUARIO
@@ -22,10 +49,24 @@ class Usuario:
         return self
     
     def validar_documentos(self):
+        if not self.nome_completo:
+            print("Nome inválido")
+            return False
+
+        if not validar_cpf(self.cpf):
+            print("CPF inválido")
+            return False
+
+        if not validar_email(self.email):
+            print("Email inválido")
+            return False
+
         if self.tipo_usuario == "motorista":
             print("Validando CNH e documentos do motorista...")
         else:
             print("Validando CPF e documentos do passageiro...")
+
+        print("Documentos válidos")
         return True
     
     def confirmar_conta(self):

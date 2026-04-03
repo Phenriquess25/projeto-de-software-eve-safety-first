@@ -6,7 +6,7 @@ from classes import *
 # =========================
 
 #USUARIO
-passageiro = Passageiro("Isaac", "123", "isaac@test.com", "1234", "9999")
+passageiro = Passageiro("Isaac", "1284", "@test.com", "1234", "9999")
 motorista = Motorista(
     "João",
     "456",
@@ -21,6 +21,9 @@ motorista = Motorista(
 print("\n--- Cadastro ---")
 passageiro.cadastrar()
 motorista.cadastrar()
+
+passageiro.validar_documentos()
+motorista.validar_documentos()
 
 passageiro.confirmar_conta()
 motorista.confirmar_conta()
@@ -77,4 +80,4 @@ controle.cancelar_corrida("Trânsito extremo")  # limite atingido
 print("\n--- Suporte ---")
 suporte = Suporte(passageiro)
 suporte.enviar("Tive um problema na corrida")
-suporte.historico()
+suporte.historico() 
