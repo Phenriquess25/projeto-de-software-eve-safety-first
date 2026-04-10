@@ -81,3 +81,16 @@ print("\n--- Suporte ---")
 suporte = Suporte(passageiro)
 suporte.enviar("Tive um problema na corrida")
 suporte.historico() 
+
+# Polimorfismo
+print("\n--- Polimorfismo ---")
+pagamentos = [
+    PagamentoPix(50),
+    PagamentoCartao(100),
+    PagamentoDinheiro(30)
+]
+
+for p in pagamentos:
+    p.processar_pagamento()
+    p.mostrar_status()
+    print()

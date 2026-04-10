@@ -61,13 +61,7 @@ class Usuario:
             print("Email inválido")
             return False
 
-        if self.tipo_usuario == "motorista":
-            print("Validando CNH e documentos do motorista...")
-            #verificaçao do cnh
-        else:
-            print("Validando CPF e documentos do passageiro...")
-
-        print("Documentos válidos")
+        print("Validação básica concluída")
         return True
     
     def confirmar_conta(self):
@@ -76,7 +70,7 @@ class Usuario:
 
 
 # =========================
-# HERANÇA USUARIO
+# HERANÇA E POLIMORFISMO USUARIO
 # =========================
 class Passageiro(Usuario):
     def __init__(self, nome_completo, cpf, email, senha, telefone):
@@ -85,6 +79,13 @@ class Passageiro(Usuario):
 
     def solicitar_corrida(self, origem, destino):
         print(f"{self.nome_completo} solicitou corrida de {origem} para {destino}")
+
+    def validar_documentos(self):
+        if not super().validar_documentos():
+            return False
+
+        print("Documentos do passageiro validados")
+        return True
 
     def mostrar_dados(self):
         print("=== Dados do Passageiro ===")
@@ -107,6 +108,17 @@ class Motorista(Usuario):
     def cadastrar_veiculo(self, veiculo):
         self.veiculo = veiculo
         print(f"Veículo {veiculo.tipo} cadastrado para {self.nome_completo}")
+
+    def validar_documentos(self):
+        if not super().validar_documentos():
+            return False
+
+        if not self.cnh:
+            print("CNH inválida")
+            return False
+
+        print("Documentos do motorista validados")
+        return True
 
     def mostrar_dados(self):
         print("=== Dados do Motorista ===")
@@ -190,67 +202,71 @@ class Rastreamento:
 
 
 # =========================
-# 5. VEICULO (HERANÇA)
+# 5. VEICULO (HERANÇA E POLIMORFISMO)
 # =========================
 class Veiculo:
-    def __init__(self, tipo, preco_km):
+    def __init__(self, tipo):
         self.tipo = tipo
-        self.preco_km = preco_km
 
     def calcular_tarifa(self, distancia):
-        return distancia * self.preco_km
-
+        raise NotImplementedError("Subclasse deve implementar")
 
 class Moto(Veiculo):
     def __init__(self):
-        super().__init__("Moto", 1.0)
+        super().__init__("Moto")
 
+    def calcular_tarifa(self, distancia):
+        return distancia * 1
 
 class Carro(Veiculo):
     def __init__(self):
-        super().__init__("Carro", 2.0)
+        super().__init__("Carro")
+
+    def calcular_tarifa(self, distancia):
+        return distancia * 2
 
 
 class VeiculoVIP(Veiculo):
     def __init__(self):
-        super().__init__("VIP", 4.0)
+        super().__init__("VIP")
+
+    def calcular_tarifa(self, distancia):
+        return distancia * 4
 
 
 # =========================
-# 6. PAGAMENTO (HERANÇA)
+# 6. PAGAMENTO (HERANÇA E POLIMORFISMO)
 # =========================
 class Pagamento:
-    def __init__(self, valor, metodo):
+    def __init__(self, valor):
         self.valor = valor
-        self.metodo = metodo
         self.status = "pendente"
 
     def processar_pagamento(self):
-        self.status = "aprovado"
-        print("Pagamento realizado com sucesso")
+        raise NotImplementedError
 
+    def mostrar_status(self):
+        print(f"Status do pagamento: {self.status}")
 
 class PagamentoPix(Pagamento):
     def __init__(self, valor):
-        super().__init__(valor, "pix")
-
+        super().__init__(valor) 
+        
     def processar_pagamento(self):
         self.status = "aprovado"
-        print(f"Pagamento de R${self.valor} via PIX realizado com sucesso")
-
+        print(f"Pagamento de R${self.valor} via PIX aprovado")
 
 class PagamentoCartao(Pagamento):
     def __init__(self, valor):
-        super().__init__(valor, "cartao")
+        super().__init__(valor)
 
     def processar_pagamento(self):
         self.status = "aprovado"
-        print(f"Pagamento de R${self.valor} com cartão realizado com sucesso")
-
+        print(f"Pagamento de R${self.valor} com cartão aprovado")
 
 class PagamentoDinheiro(Pagamento):
     def __init__(self, valor):
-        super().__init__(valor, "dinheiro")
+        super().__init__(valor)
 
     def processar_pagamento(self):
         self.status = "pago na entrega"
