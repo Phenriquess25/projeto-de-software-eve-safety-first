@@ -1,9 +1,68 @@
 import uuid
-import re
+import re  # biblioteca para manipulação de strings (regex)
 
 # =========================
 # FUNÇÕES DE VALIDAÇÃO
 # =========================
+
+def validar_cnh(cnh):
+    # Remove todos os caracteres que não são números (ex: ".", "-", espaços)
+    cnh = re.sub(r'\D', '', cnh)
+
+    # Verifica se a CNH tem exatamente 11 dígitos
+    if len(cnh) != 11:
+        return False
+
+    # Verifica se todos os dígitos são iguais (ex: 11111111111)
+    if cnh == cnh[0] * 11:
+        return False
+
+    # =========================
+    # 1º dígito verificador
+    # =========================
+
+    soma = 0  # variável para armazenar a soma
+
+    # Percorre os 9 primeiros dígitos
+    for i in range(9):
+        # Multiplica cada dígito por um peso decrescente (9 até 1)
+        soma += int(cnh[i]) * (9 - i)
+
+    # Calcula o resto da divisão por 11
+    resto = soma % 11
+
+    # Define o primeiro dígito verificador
+    if resto >= 10:
+        dig1 = 0
+    else:
+        dig1 = resto
+
+    # =========================
+    # 2º dígito verificador
+    # =========================
+
+    soma = 0  # reinicia a soma
+
+    # Percorre os 9 primeiros dígitos novamente
+    for i in range(9):
+        # Multiplica cada dígito por um peso crescente (1 até 9)
+        soma += int(cnh[i]) * (1 + i)
+
+    # Soma o primeiro dígito verificador com peso 9
+    soma += dig1 * 9
+
+    # Calcula o resto da divisão por 11
+    resto = soma % 11
+
+    # Define o segundo dígito verificador
+    if resto >= 10:
+        dig2 = 0
+    else:
+        dig2 = resto 
+
+    # Compara os dígitos calculados com os do CNH informado
+    return dig1 == int(cnh[9]) and dig2 == int(cnh[10])
+
 def validar_cpf(cpf):
     cpf = re.sub(r'\D', '', cpf)
 
@@ -113,7 +172,7 @@ class Motorista(Usuario):
         if not super().validar_documentos():
             return False
 
-        if not self.cnh:
+        if not validar_cnh(self.cnh):
             print("CNH inválida")
             return False
 

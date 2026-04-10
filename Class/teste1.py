@@ -1,20 +1,28 @@
 from classes import *
 
+print("\n============================")
+print("      TESTE COMPLETO")
+print("============================\n")
 
 # =========================
-# TESTE
+# 1. CRIAÇÃO DE USUÁRIOS
 # =========================
+passageiro = Passageiro(
+    "Isaac",
+    "52998224725",  # CPF válido
+    "isaac@test.com",
+    "1234",
+    "9999"
+)
 
-#USUARIO
-passageiro = Passageiro("Isaac", "1284", "@test.com", "1234", "9999")
 motorista = Motorista(
-    "João",
-    "456",
-    "joao@test.com",
-    "abcd",
-    "8888",
-    "CNH123",
-    "ABC-1234",
+    "João Silva",
+    "12345678909",
+    "joao@email.com", 
+    "senha123",
+    "11999999999",
+    "12345678909",  # CNH valida
+    "ABC1234",
     "Toyota Corolla"
 )
 
@@ -22,22 +30,36 @@ print("\n--- Cadastro ---")
 passageiro.cadastrar()
 motorista.cadastrar()
 
-passageiro.validar_documentos()
-motorista.validar_documentos()
+# =========================
+# 2. VALIDAÇÃO + CONFIRMAÇÃO
+# =========================
+print("\n--- Validação ---")
 
-passageiro.confirmar_conta()
-motorista.confirmar_conta()
+if passageiro.validar_documentos():
+    passageiro.confirmar_conta()
 
+if motorista.validar_documentos():
+    motorista.confirmar_conta()
+else:
+    print("Motorista não pode ser confirmado")
+
+# =========================
+# 3. DADOS
+# =========================
 print("\n--- Dados ---")
 passageiro.mostrar_dados()
 motorista.mostrar_dados()
 
-# Login
+# =========================
+# 4. LOGIN
+# =========================
 print("\n--- Login ---")
 login = Login(passageiro)
 login.autenticar("isaac@test.com", "1234")
 
-# Criar corrida
+# =========================
+# 5. CORRIDA
+# =========================
 print("\n--- Corrida ---")
 corrida = Corrida(passageiro, "Casa", "Centro")
 
@@ -48,23 +70,34 @@ corrida.escolher_veiculo(veiculo)
 corrida.calcular_preco()
 corrida.confirmar()
 
-# Pagamento
+print(f"Status da corrida: {corrida.status}")
+
+# =========================
+# 6. PAGAMENTO
+# =========================
 print("\n--- Pagamento ---")
 pagamento = PagamentoPix(corrida.valor)
 pagamento.processar_pagamento()
+pagamento.mostrar_status()
 
-# Histórico
+# =========================
+# 7. HISTÓRICO
+# =========================
 print("\n--- Histórico ---")
 historico = Historico(passageiro)
 historico.adicionar(corrida)
 historico.visualizar()
 
-# Avaliação
+# =========================
+# 8. AVALIAÇÃO
+# =========================
 print("\n--- Avaliação ---")
 avaliacao = Avaliacao(passageiro, motorista, 5, "Excelente motorista!")
 avaliacao.avaliar()
 
-# Cancelamento
+# =========================
+# 9. CANCELAMENTO
+# =========================
 print("\n--- Cancelamento ---")
 controle = ControleCancelamento(2)
 
@@ -76,14 +109,19 @@ controle.cancelar_corrida("Problema no carro")  # ok
 controle.cancelar_corrida("Emergência")  # ok
 controle.cancelar_corrida("Trânsito extremo")  # limite atingido
 
-# Suporte
+# =========================
+# 10. SUPORTE
+# =========================
 print("\n--- Suporte ---")
 suporte = Suporte(passageiro)
 suporte.enviar("Tive um problema na corrida")
-suporte.historico() 
+suporte.historico()
 
-# Polimorfismo
-print("\n--- Polimorfismo ---")
+# =========================
+# 11. POLIMORFISMO PAGAMENTO
+# =========================
+print("\n--- Polimorfismo Pagamento ---")
+
 pagamentos = [
     PagamentoPix(50),
     PagamentoCartao(100),
@@ -94,3 +132,14 @@ for p in pagamentos:
     p.processar_pagamento()
     p.mostrar_status()
     print()
+
+# =========================
+# 12. POLIMORFISMO VEÍCULO 
+# =========================
+print("\n--- Polimorfismo Veículo ---")
+
+veiculos = [Moto(), Carro(), VeiculoVIP()]
+
+for v in veiculos:
+    corrida.escolher_veiculo(v)
+    corrida.calcular_preco()
