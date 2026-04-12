@@ -21,7 +21,7 @@ motorista = Motorista(
     "joao@email.com", 
     "senha123",
     "11999999999",
-    "12345678909",  # CNH valida
+    "59090100108",  # CNH valida
     "ABC1234",
     "Toyota Corolla"
 )
