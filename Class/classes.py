@@ -1,5 +1,7 @@
 import uuid
 import re  # biblioteca para manipulação de strings (regex)
+import random 
+from datetime import date 
 
 # =========================
 # FUNÇÕES DE VALIDAÇÃO
@@ -17,52 +19,45 @@ def validar_cnh(cnh):
     if cnh == cnh[0] * 11:
         return False
 
-    # =========================
-    # 1º dígito verificador
-    # =========================
-
-    soma = 0  # variável para armazenar a soma
-
-    # Percorre os 9 primeiros dígitos
+    # Cálculo do Primeiro Dígito Verificador (DV1)
+    soma = 0
+    # Pesos de 9 até 1
     for i in range(9):
-        # Multiplica cada dígito por um peso decrescente (9 até 1)
         soma += int(cnh[i]) * (9 - i)
 
-    # Calcula o resto da divisão por 11
-    resto = soma % 11
-
-    # Define o primeiro dígito verificador
-    if resto >= 10:
+    resto1 = soma % 11
+    
+    # Define o valor do decremento para o próximo cálculo
+    # Se o resto for > 9, o dígito é 0 e o decremento é 2
+    if resto1 > 9:
+        v_dsc = 2
         dig1 = 0
     else:
-        dig1 = resto
+        v_dsc = 0
+        dig1 = resto1
 
-    # =========================
-    # 2º dígito verificador
-    # =========================
-
-    soma = 0  # reinicia a soma
-
-    # Percorre os 9 primeiros dígitos novamente
+    # Cálculo do Segundo Dígito Verificador (DV2)
+    soma = 0
+    # Pesos de 1 até 9
     for i in range(9):
-        # Multiplica cada dígito por um peso crescente (1 até 9)
         soma += int(cnh[i]) * (1 + i)
 
-    # Soma o primeiro dígito verificador com peso 9
-    soma += dig1 * 9
-
-    # Calcula o resto da divisão por 11
-    resto = soma % 11
-
-    # Define o segundo dígito verificador
-    if resto >= 10:
+    resto2 = soma % 11
+    
+    # Aplicação da regra do decremento
+    dig2 = resto2 - v_dsc
+    
+    # Ajustes finais para o segundo dígito
+    if dig2 < 0:
+        dig2 += 11
+    if dig2 > 9:
         dig2 = 0
-    else:
-        dig2 = resto 
 
-    # Compara os dígitos calculados com os do CNH informado
-    return dig1 == int(cnh[9]) and dig2 == int(cnh[10])
+    # Comparação Final
+    # Verifica se os dígitos calculados batem com os informados
+    return str(dig1) == cnh[9] and str(dig2) == cnh[10]
 
+    
 def validar_cpf(cpf):
     cpf = re.sub(r'\D', '', cpf)
 
@@ -82,7 +77,7 @@ def validar_cpf(cpf):
 
 
 def validar_email(email):
-    padrao = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' 
     return re.match(padrao, email) is not None
 
 
@@ -223,7 +218,7 @@ class Corrida:
         self.veiculo = None
 
     def calcular_distancia(self):
-        self.distancia = 10
+        self.distancia = round(random.uniform(1, 50), 2)
         print(f"Distância calculada: {self.distancia} km")
 
     def escolher_veiculo(self, veiculo):
@@ -377,13 +372,21 @@ class ControleCancelamento:
     def __init__(self, limite_por_dia):
         self.limite = limite_por_dia
         self.cancelamentos = 0
+        self.data_atual = date.today() 
+
+    def verificar_reset(self):
+        if date.today()!= self.data_atual:
+            self.cancelamentos = 0
+            self.data_atual = date.today() 
 
     def mostrar_motivos(self):
         print("Motivos disponíveis:")
         for m in self.MOTIVOS_VALIDOS:
-            print("-", m)
+            print("-", m) 
 
     def cancelar_corrida(self, motivo):
+        self.verificar_reset()
+        
         if not motivo or motivo.strip() == "":
             print("Erro: é obrigatório informar o motivo do cancelamento")
             return

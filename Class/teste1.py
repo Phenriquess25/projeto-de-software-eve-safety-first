@@ -109,6 +109,10 @@ controle.cancelar_corrida("Problema no carro")  # ok
 controle.cancelar_corrida("Emergência")  # ok
 controle.cancelar_corrida("Trânsito extremo")  # limite atingido
 
+controle.data_atual = date(2026, 1, 1)
+
+controle.cancelar_corrida("Emergência")  # ok
+
 # =========================
 # 10. SUPORTE
 # =========================
