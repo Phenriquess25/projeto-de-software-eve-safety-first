@@ -1,1 +1,5 @@
-"__pycache__/*.py[cod]venv/.env" 
+
+__pycache__/
+modelos/__pycache__/
+class/__pycache__/
+*.py[cod]venv/.env
