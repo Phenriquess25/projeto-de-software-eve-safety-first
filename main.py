@@ -7,18 +7,23 @@ from modelos.historico import Historico
 from modelos.avaliacao import Avaliacao
 from modelos.controle_cancelamento import ControleCancelamento
 from modelos.suporte import Suporte
+
+from bancos_dados import *
+
 from datetime import date
+
 
 print("\n============================")
 print("      TESTE COMPLETO")
 print("============================\n")
+
 
 # =========================
 # 1. CRIAÇÃO DE USUÁRIOS
 # =========================
 passageiro = Passageiro(
     "Isaac",
-    "52998224725",  # CPF válido
+    "52998224725",
     "isaac@test.com",
     "1234",
     "9999"
@@ -27,10 +32,10 @@ passageiro = Passageiro(
 motorista = Motorista(
     "João Silva",
     "12345678909",
-    "joao@email.com", 
+    "joao@email.com",
     "senha123",
     "11999999999",
-    "59090100108",  # CNH valida
+    "59090100108",
     "ABC1234",
     "Toyota Corolla"
 )
@@ -38,6 +43,11 @@ motorista = Motorista(
 print("\n--- Cadastro ---")
 passageiro.cadastrar()
 motorista.cadastrar()
+
+# SALVAR NO BANCO
+salvar_usuarios(passageiro)
+salvar_usuarios(motorista)
+
 
 # =========================
 # 2. VALIDAÇÃO + CONFIRMAÇÃO
@@ -52,12 +62,14 @@ if motorista.validar_documentos():
 else:
     print("Motorista não pode ser confirmado")
 
+
 # =========================
 # 3. DADOS
 # =========================
 print("\n--- Dados ---")
 passageiro.mostrar_dados()
 motorista.mostrar_dados()
+
 
 # =========================
 # 4. LOGIN
@@ -66,10 +78,12 @@ print("\n--- Login ---")
 login = Login(passageiro)
 login.autenticar("isaac@test.com", "1234")
 
+
 # =========================
 # 5. CORRIDA
 # =========================
 print("\n--- Corrida ---")
+
 corrida = Corrida(passageiro, "Casa", "Centro")
 
 veiculo = Carro()
@@ -81,54 +95,83 @@ corrida.confirmar()
 
 print(f"Status da corrida: {corrida.status}")
 
+# SALVAR CORRIDA
+salvar_corridas(corrida)
+
+
 # =========================
 # 6. PAGAMENTO
 # =========================
 print("\n--- Pagamento ---")
+
 pagamento = PagamentoPix(corrida.valor)
 pagamento.processar_pagamento()
 pagamento.mostrar_status()
+
+# SALVAR PAGAMENTO
+salvar_pagamentos(pagamento)
+
 
 # =========================
 # 7. HISTÓRICO
 # =========================
 print("\n--- Histórico ---")
+
 historico = Historico(passageiro)
 historico.adicionar(corrida)
 historico.visualizar()
+
 
 # =========================
 # 8. AVALIAÇÃO
 # =========================
 print("\n--- Avaliação ---")
-avaliacao = Avaliacao(passageiro, motorista, 5, "Excelente motorista!")
+
+avaliacao = Avaliacao(
+    passageiro,
+    motorista,
+    5,
+    "Excelente motorista!"
+)
+
 avaliacao.avaliar()
+
 
 # =========================
 # 9. CANCELAMENTO
 # =========================
 print("\n--- Cancelamento ---")
+
 controle = ControleCancelamento(2)
 
 controle.mostrar_motivos()
 
-controle.cancelar_corrida("")  # erro
-controle.cancelar_corrida("Fome")  # inválido
-controle.cancelar_corrida("Problema no carro")  # ok
-controle.cancelar_corrida("Emergência")  # ok
-controle.cancelar_corrida("Trânsito extremo")  # limite atingido
+controle.cancelar_corrida("")
+controle.cancelar_corrida("Fome")
+controle.cancelar_corrida("Problema no carro")
+controle.cancelar_corrida("Emergência")
+controle.cancelar_corrida("Trânsito extremo")
 
 controle.data_atual = date(2026, 1, 1)
 
-controle.cancelar_corrida("Emergência")  # ok
+controle.cancelar_corrida("Emergência")
+
 
 # =========================
 # 10. SUPORTE
 # =========================
 print("\n--- Suporte ---")
+
 suporte = Suporte(passageiro)
-suporte.enviar("Tive um problema na corrida")
+
+mensagem = "Tive um problema na corrida"
+
+suporte.enviar(mensagem)
 suporte.historico()
+
+# SALVAR MENSAGEM
+salvar_mensagens(passageiro, mensagem)
+
 
 # =========================
 # 11. POLIMORFISMO PAGAMENTO
@@ -146,13 +189,35 @@ for p in pagamentos:
     p.mostrar_status()
     print()
 
+
 # =========================
-# 12. POLIMORFISMO VEÍCULO 
+# 12. POLIMORFISMO VEÍCULO
 # =========================
 print("\n--- Polimorfismo Veículo ---")
 
-veiculos = [Moto(), Carro(), VeiculoVIP()]
+veiculos = [
+    Moto(),
+    Carro(),
+    VeiculoVIP()
+]
 
 for v in veiculos:
     corrida.escolher_veiculo(v)
     corrida.calcular_preco()
+
+
+# =========================
+# 13. CONSULTA BANCO
+# =========================
+print("\n--- Usuários Salvos ---")
+print(listar_usuarios())
+
+print("\n--- Corridas Salvas ---")
+print(listar_corridas())
+
+print("\n--- Pagamentos Salvos ---")
+print(listar_pagamentos())
+
+print("\n--- Mensagens Suporte ---")
+print(listar_mensagens())
+

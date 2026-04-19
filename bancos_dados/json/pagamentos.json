@@ -1,0 +1,17 @@
+[
+    {
+        "valor": 83.36,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 14.08,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 71.32,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    }
+]
