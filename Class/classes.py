@@ -2,6 +2,7 @@ import uuid
 import re  # biblioteca para manipulação de strings (regex)
 import random 
 from datetime import date 
+from abc import ABC, abstractmethod
 
 # =========================
 # FUNÇÕES DE VALIDAÇÃO
@@ -256,14 +257,16 @@ class Rastreamento:
 
 
 # =========================
-# 5. VEICULO (HERANÇA E POLIMORFISMO)
+# 5. VEICULO (ABSTRACT CLASS,HERANÇA E POLIMORFISMO)
 # =========================
-class Veiculo:
+class Veiculo(ABC):
     def __init__(self, tipo):
         self.tipo = tipo
 
+    @abstractmethod
     def calcular_tarifa(self, distancia):
-        raise NotImplementedError("Subclasse deve implementar")
+        pass
+
 
 class Moto(Veiculo):
     def __init__(self):
@@ -271,6 +274,7 @@ class Moto(Veiculo):
 
     def calcular_tarifa(self, distancia):
         return distancia * 1
+
 
 class Carro(Veiculo):
     def __init__(self):

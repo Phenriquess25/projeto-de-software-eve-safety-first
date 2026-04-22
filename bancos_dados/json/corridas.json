@@ -28,5 +28,15 @@
         "status": "confirmada",
         "valor": 71.32,
         "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "cad0fc11-a2c6-4ee6-ae0f-a44294dbf348",
+        "passageiro": "Isaac",
+        "origem": "Casa",
+        "destino": "Centro",
+        "distancia": 49.86,
+        "status": "confirmada",
+        "valor": 99.72,
+        "tipo_veiculo": "Carro"
     }
 ]
