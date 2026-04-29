@@ -35,3 +35,9 @@ Certifique-se de ter o Python instalado e execute:
 ```bash
 python main.py
  
+
+ ## 📚 Documentation
+
+- [Herança](heranca.md)
+- [Polimorfismo](polimorfismo.md)
+- [Funcionalidades](documentacao_funcionalidades.md)
