@@ -9,7 +9,7 @@ print("============================\n")
 # =========================
 passageiro = Passageiro(
     "Isaac",
-    "52998224725",  # CPF válido
+    "52998224725",  
     "isaac@test.com",
     "1234",
     "9999"
@@ -21,7 +21,7 @@ motorista = Motorista(
     "joao@email.com", 
     "senha123",
     "11999999999",
-    "59090100108",  # CNH valida
+    "59090100108",  
     "ABC1234",
     "Toyota Corolla"
 )

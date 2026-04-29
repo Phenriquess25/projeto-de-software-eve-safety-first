@@ -85,7 +85,7 @@ def validar_email(email):
 # =========================
 # 1. USUARIO
 # =========================
-class Usuario:
+class Usuario(ABC):
     def __init__(self, nome_completo, cpf, email, senha, telefone, tipo_usuario):
         self.id_usuario = self._gerar_id_unico()
         self.nome_completo = nome_completo
@@ -123,6 +123,9 @@ class Usuario:
         self.status_conta = True
         print(f"Conta de {self.tipo_usuario} confirmada com sucesso!")
 
+    @abstractmethod
+    def mostrar_dados(self):
+        pass
 
 # =========================
 # HERANÇA E POLIMORFISMO USUARIO
@@ -295,13 +298,14 @@ class VeiculoVIP(Veiculo):
 # =========================
 # 6. PAGAMENTO (HERANÇA E POLIMORFISMO)
 # =========================
-class Pagamento:
+class Pagamento(ABC):
     def __init__(self, valor):
         self.valor = valor
         self.status = "pendente"
 
+    @abstractmethod
     def processar_pagamento(self):
-        raise NotImplementedError
+        pass
 
     def mostrar_status(self):
         print(f"Status do pagamento: {self.status}")

@@ -2,16 +2,19 @@
 Classe Pagamento - Funcionalidade 6: Sistema de pagamento
 """ 
 
+from abc import ABC, abstractmethod 
+
 # =========================
 # 6. PAGAMENTO (HERANÇA E POLIMORFISMO)
 # =========================
-class Pagamento:
+class Pagamento(ABC):
     def __init__(self, valor):
         self.valor = valor
         self.status = "pendente"
 
+    @abstractmethod
     def processar_pagamento(self):
-        raise NotImplementedError
+        pass
 
     def mostrar_status(self):
         print(f"Status do pagamento: {self.status}")
@@ -39,3 +42,4 @@ class PagamentoDinheiro(Pagamento):
     def processar_pagamento(self):
         self.status = "pago na entrega"
         print(f"Pagamento de R${self.valor} será feito em dinheiro")
+

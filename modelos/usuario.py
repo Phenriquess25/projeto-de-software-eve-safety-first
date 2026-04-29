@@ -4,12 +4,13 @@ Classe Usuario - Funcionalidade 1: Cadastro de usuário
 """
 
 import uuid
+from abc import ABC, abstractmethod 
 from modelos.validacoes import validar_cpf, validar_email, validar_cnh
 
 # =========================
 # 1. USUARIO
 # =========================
-class Usuario:
+class Usuario(ABC):
     def __init__(self, nome_completo, cpf, email, senha, telefone, tipo_usuario):
         self.id_usuario = self._gerar_id_unico()
         self.nome_completo = nome_completo
@@ -47,6 +48,9 @@ class Usuario:
         self.status_conta = True
         print(f"Conta de {self.tipo_usuario} confirmada com sucesso!")
 
+    @abstractmethod
+    def mostrar_dados(self):
+        pass
 
 # =========================
 # HERANÇA E POLIMORFISMO USUARIO
@@ -107,3 +111,4 @@ class Motorista(Usuario):
         print(f"Modelo: {self.modelo_veiculo}")
         if self.veiculo:
             print(f"Tipo de veículo: {self.veiculo.tipo}")
+
