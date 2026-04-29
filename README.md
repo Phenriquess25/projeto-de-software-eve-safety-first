@@ -23,21 +23,37 @@ O código foi organizado seguindo padrões de modularidade para facilitar a manu
 ├── main.py               # Script principal com testes de integração
 └── .gitignore            # Limpeza de arquivos temporários (__pycache__)
 
-##  Funcionalidades
-    **Cadastro & Login:** Sistema com validação real de **CPF** e **CNH**.
-    **Gestão de Corridas:** Escolha de veículos com cálculo automático de tarifas.
-     **Segurança & Controle:** Sistema de cancelamento com limites diários e motivos obrigatórios.
-    **Experiência Completa:** Histórico de viagens, avaliações de motoristas e suporte ao cliente.
-    **Rastreamento:** Simulação de localização do motorista em tempo real.
+
+##  Funcionalidades principais
+
+- Cadastro de usuários (passageiro e motorista)
+- Login com validação
+- Solicitação de corridas
+- Escolha de tipo de veículo
+- Cálculo de preço automático
+- Sistema de pagamento (PIX, cartão, dinheiro)
+- Histórico de corridas
+- Avaliação de motoristas
+- Controle de cancelamentos
+- Suporte ao cliente
+
+##  Conceitos de POO utilizados
+
+- Herança
+- Polimorfismo
+- Encapsulamento
+- Classes abstratas
+
+
+## 📚 Documentação
+
+- [Herança](docss/heranca.md)
+- [Polimorfismo](docss/polimorfismo.md)
+- [Funcionalidades](docss/documentacao_funcionalidades.md)
+
 
 ## Como Testar
 Certifique-se de ter o Python instalado e execute:
 ```bash
 python main.py
  
-
- ## 📚 Documentation
-
-- [Herança](heranca.md)
-- [Polimorfismo](polimorfismo.md)
-- [Funcionalidades](documentacao_funcionalidades.md)
