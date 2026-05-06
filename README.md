@@ -59,6 +59,9 @@ Exemplo conceitual:
 veiculo = VeiculoFactory.criar("carro")
 pagamento = PagamentoFactory.criar("pix", valor)
 
+
+
+
 ## 📚 Documentação
 
 - [Herança](docss/heranca.md)
