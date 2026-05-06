@@ -1,18 +1,20 @@
-
+````md
 # Eve - Safety First 
 
 Sistema de transporte com foco em segurança e controle de cancelamentos pelo motorista.
 
-##  Descrição
+## Descrição
 Este projeto é uma simulação de plataforma de transporte desenvolvida para demonstrar práticas avançadas de **Programação Orientada a Objetos (POO)** e organização modular em Python.
 
 ## Autor
 
 Senan Isäc Armel DJENONLO
 
-##  Estrutura do Projeto (Refatorada)
+## Estrutura do Projeto (Refatorada)
+
 O código foi organizado seguindo padrões de modularidade para facilitar a manutenção:
 
+```text
 .
 ├── modelos/              # Pacote com as regras de negócio
 │   ├── usuario.py        # Herança: Usuario, Passageiro e Motorista
@@ -22,9 +24,9 @@ O código foi organizado seguindo padrões de modularidade para facilitar a manu
 │   └── ...               # Suporte, Avaliação e Histórico
 ├── main.py               # Script principal com testes de integração
 └── .gitignore            # Limpeza de arquivos temporários (__pycache__)
+```
 
-
-##  Funcionalidades principais
+## Funcionalidades principais
 
 - Cadastro de usuários (passageiro e motorista)
 - Login com validação
@@ -37,13 +39,12 @@ O código foi organizado seguindo padrões de modularidade para facilitar a manu
 - Controle de cancelamentos
 - Suporte ao cliente
 
-##  Conceitos de POO utilizados
+## Conceitos de POO utilizados
 
 - Herança
 - Polimorfismo
 - Encapsulamento
 - Classes abstratas
-
 
 ## Aplicação de Factory Method
 
@@ -58,9 +59,19 @@ Exemplo conceitual:
 ```python
 veiculo = VeiculoFactory.criar("carro")
 pagamento = PagamentoFactory.criar("pix", valor)
+```
 
+### Benefícios da aplicação
 
+- Redução de múltiplos `if/elif`
+- Menor acoplamento entre módulos
+- Facilidade de manutenção
+- Maior escalabilidade
+- Código mais organizado e reutilizável
 
+Dessa forma, caso novos tipos de veículos ou pagamentos sejam adicionados futuramente, será necessário modificar apenas a factory responsável pela criação dos objetos, sem alterar outras partes do sistema.
+
+Essa abordagem também se integra bem aos arquivos de persistência presentes em `bancos_dados/corridas_bd.py` e `bancos_dados/pagamentos_bd.py`, já que os dados armazenam o tipo do objeto utilizado no sistema.
 
 ## 📚 Documentação
 
@@ -68,9 +79,11 @@ pagamento = PagamentoFactory.criar("pix", valor)
 - [Polimorfismo](docss/polimorfismo.md)
 - [Funcionalidades](docss/documentacao_funcionalidades.md)
 
-
 ## Como Testar
+
 Certifique-se de ter o Python instalado e execute:
+
 ```bash
 python main.py
- 
+```
+````
