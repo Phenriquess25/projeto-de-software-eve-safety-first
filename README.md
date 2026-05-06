@@ -24,27 +24,27 @@ O código foi organizado seguindo padrões de modularidade para facilitar a manu
 │   └── ...               # Suporte, Avaliação e Histórico
 ├── main.py               # Script principal com testes de integração
 └── .gitignore            # Limpeza de arquivos temporários (__pycache__)
-```
+````
 
 ## Funcionalidades principais
 
-- Cadastro de usuários (passageiro e motorista)
-- Login com validação
-- Solicitação de corridas
-- Escolha de tipo de veículo
-- Cálculo de preço automático
-- Sistema de pagamento (PIX, cartão, dinheiro)
-- Histórico de corridas
-- Avaliação de motoristas
-- Controle de cancelamentos
-- Suporte ao cliente
+* Cadastro de usuários (passageiro e motorista)
+* Login com validação
+* Solicitação de corridas
+* Escolha de tipo de veículo
+* Cálculo de preço automático
+* Sistema de pagamento (PIX, cartão, dinheiro)
+* Histórico de corridas
+* Avaliação de motoristas
+* Controle de cancelamentos
+* Suporte ao cliente
 
 ## Conceitos de POO utilizados
 
-- Herança
-- Polimorfismo
-- Encapsulamento
-- Classes abstratas
+* Herança
+* Polimorfismo
+* Encapsulamento
+* Classes abstratas
 
 ## Aplicação de Factory Method
 
@@ -63,11 +63,11 @@ pagamento = PagamentoFactory.criar("pix", valor)
 
 ### Benefícios da aplicação
 
-- Redução de múltiplos `if/elif`
-- Menor acoplamento entre módulos
-- Facilidade de manutenção
-- Maior escalabilidade
-- Código mais organizado e reutilizável
+* Redução de múltiplos `if/elif`
+* Menor acoplamento entre módulos
+* Facilidade de manutenção
+* Maior escalabilidade
+* Código mais organizado e reutilizável
 
 Dessa forma, caso novos tipos de veículos ou pagamentos sejam adicionados futuramente, será necessário modificar apenas a factory responsável pela criação dos objetos, sem alterar outras partes do sistema.
 
@@ -75,9 +75,9 @@ Essa abordagem também se integra bem aos arquivos de persistência presentes em
 
 ## 📚 Documentação
 
-- [Herança](docss/heranca.md)
-- [Polimorfismo](docss/polimorfismo.md)
-- [Funcionalidades](docss/documentacao_funcionalidades.md)
+* [Herança](docss/heranca.md)
+* [Polimorfismo](docss/polimorfismo.md)
+* [Funcionalidades](docss/documentacao_funcionalidades.md)
 
 ## Como Testar
 
@@ -86,4 +86,6 @@ Certifique-se de ter o Python instalado e execute:
 ```bash
 python main.py
 ```
-````
+
+```
+```
