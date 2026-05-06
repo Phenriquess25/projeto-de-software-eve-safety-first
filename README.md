@@ -87,5 +87,4 @@ Certifique-se de ter o Python instalado e execute:
 python main.py
 ```
 
-```
-```
+
