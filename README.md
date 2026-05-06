@@ -45,6 +45,20 @@ O código foi organizado seguindo padrões de modularidade para facilitar a manu
 - Classes abstratas
 
 
+## Aplicação de Factory Method
+
+O padrão criacional Factory Method pode ser aplicado nos módulos `modelos/veiculo.py` e `modelos/pagamento.py`, pois o sistema possui múltiplas classes concretas que representam variações do mesmo comportamento.
+
+No módulo de veículos, existem diferentes tipos como `Moto`, `Carro` e `VeiculoVIP`, cada um implementando sua própria lógica de tarifa. Já no módulo de pagamentos, classes como `PagamentoPix`, `PagamentoCartao` e `PagamentoDinheiro` representam diferentes formas de processamento de pagamento.
+
+Atualmente, a escolha dessas classes é realizada diretamente no `main.py` através de condicionais e instanciações explícitas. Com o Factory Method, essa criação poderia ser centralizada em uma classe fábrica, reduzindo acoplamento e melhorando a organização do sistema.
+
+Exemplo conceitual:
+
+```python
+veiculo = VeiculoFactory.criar("carro")
+pagamento = PagamentoFactory.criar("pix", valor)
+
 ## 📚 Documentação
 
 - [Herança](docss/heranca.md)
