@@ -18,5 +18,70 @@
         "valor": 99.72,
         "status": "aprovado",
         "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 57.94,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 92.98,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 79.76,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 92.48,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 68.56,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 22.68,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 21.92,
+        "status": "aprovado",
+        "metodo": "PagamentoCartao"
+    },
+    {
+        "valor": 22.75,
+        "status": "pago na entrega",
+        "metodo": "PagamentoDinheiro"
+    },
+    {
+        "valor": 52.72,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 67.5,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 66.04,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 52.4,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
+    },
+    {
+        "valor": 49.6,
+        "status": "aprovado",
+        "metodo": "PagamentoPix"
     }
 ]

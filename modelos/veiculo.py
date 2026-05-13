@@ -38,3 +38,38 @@ class VeiculoVIP(Veiculo):
 
     def calcular_tarifa(self, distancia):
         return distancia * 4
+
+
+# =========================
+# VEICULO FACTORY (PADRÃO CRIACIONAL)
+# =========================
+class VeiculoFactory:
+    """
+    Factory Method para criar instâncias de Veículos.
+    Centraliza a lógica de criação de diferentes tipos de veículos.
+    """
+    
+    @staticmethod
+    def criar(tipo_veiculo: str) -> Veiculo:
+        """
+        Cria e retorna um veículo do tipo especificado.
+        
+        Args:
+            tipo_veiculo (str): Tipo de veículo ('moto', 'carro', 'vip')
+            
+        Returns:
+            Veiculo: Instância do veículo solicitado
+            
+        Raises:
+            ValueError: Se o tipo de veículo não for reconhecido
+        """
+        tipo_veiculo = tipo_veiculo.lower().strip()
+        
+        if tipo_veiculo == "moto":
+            return Moto()
+        elif tipo_veiculo == "carro":
+            return Carro()
+        elif tipo_veiculo == "vip":
+            return VeiculoVIP()
+        else:
+            raise ValueError(f"Tipo de veículo '{tipo_veiculo}' não reconhecido. Use 'moto', 'carro' ou 'vip'.")

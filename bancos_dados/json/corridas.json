@@ -38,5 +38,138 @@
         "status": "confirmada",
         "valor": 99.72,
         "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "37d43968-5100-42fb-99f1-d618af042606",
+        "passageiro": "Isaac",
+        "origem": "Casa",
+        "destino": "Centro",
+        "distancia": 28.97,
+        "status": "confirmada",
+        "valor": 57.94,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "d8686262-8aa9-40dd-b662-b1cf1e4f8dfd",
+        "passageiro": "Isaac",
+        "origem": "Casa",
+        "destino": "Centro",
+        "distancia": 46.49,
+        "status": "confirmada",
+        "valor": 92.98,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "5245a875-53bf-4e62-b5b0-fd2decf5561b",
+        "passageiro": "JoÃ£o Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 39.88,
+        "status": "confirmada",
+        "valor": 79.76,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "f0092b90-e9dd-4388-99f0-70f5d89e2e07",
+        "passageiro": "JoÃ£o Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 46.24,
+        "status": "confirmada",
+        "valor": 92.48,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "df69e0e0-6223-4459-b431-8f1ad06f62d3",
+        "passageiro": "João Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 34.28,
+        "status": "confirmada",
+        "valor": 68.56,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "a4c9e25c-6d61-471f-83a1-968793d1fbb3",
+        "passageiro": "João Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 11.34,
+        "status": "confirmada",
+        "valor": 22.68,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "8fdd6c7d-be74-472d-a857-6b66768871b5",
+        "passageiro": "pedro",
+        "origem": "centro",
+        "destino": "tabuleiro",
+        "distancia": 5.48,
+        "status": "confirmada",
+        "valor": 21.92,
+        "tipo_veiculo": "VIP"
+    },
+    {
+        "id_corrida": "721822a1-cd1a-4dce-995e-6de677c3c9e2",
+        "passageiro": "pedro",
+        "origem": "tabuleiro",
+        "destino": "pajuçara",
+        "distancia": 22.75,
+        "status": "confirmada",
+        "valor": 22.75,
+        "tipo_veiculo": "Moto"
+    },
+    {
+        "id_corrida": "efa98e23-104c-43b5-9de5-1cd88072c5e5",
+        "passageiro": "pedro",
+        "origem": "ali",
+        "destino": "aqui",
+        "distancia": 26.36,
+        "status": "confirmada",
+        "valor": 52.72,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "578e2a38-c5cc-4e65-8969-3bc0bc1d693f",
+        "passageiro": "pedro",
+        "origem": "eu",
+        "destino": "tu",
+        "distancia": 33.75,
+        "status": "confirmada",
+        "valor": 67.5,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "4c92de93-302d-473d-80a8-55659e1a05d0",
+        "id_passageiro": "c9c0e26c-4c43-44ba-9374-312b318c6564",
+        "passageiro": "João Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 33.02,
+        "status": "confirmada",
+        "valor": 66.04,
+        "tipo_veiculo": "Carro"
+    },
+    {
+        "id_corrida": "d8edb6a8-4c82-4a88-bcd7-6bde2378a4ad",
+        "id_passageiro": "e8e7fca9-8351-4d89-b2ae-7eeeb05b9d53",
+        "passageiro": "pedro",
+        "origem": "centro",
+        "destino": "pajuçara",
+        "distancia": 13.1,
+        "status": "confirmada",
+        "valor": 52.4,
+        "tipo_veiculo": "VIP"
+    },
+    {
+        "id_corrida": "a3bb1d77-3041-4823-96cd-a60b960fdbef",
+        "id_passageiro": "8f4e05d3-a8fa-4a1b-bd82-e48bd75bf3fb",
+        "passageiro": "João Silva",
+        "origem": "Centro",
+        "destino": "Bairro",
+        "distancia": 24.8,
+        "status": "confirmada",
+        "valor": 49.6,
+        "tipo_veiculo": "Carro"
     }
 ]

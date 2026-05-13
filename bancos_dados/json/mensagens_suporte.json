@@ -18,5 +18,55 @@
         "usuario": "Isaac",
         "mensagem": "Tive um problema na corrida",
         "data_hora": "22/04/2026 16:26:01"
+    },
+    {
+        "usuario": "Isaac",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:08:27"
+    },
+    {
+        "usuario": "Isaac",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:21:16"
+    },
+    {
+        "usuario": "pedrp",
+        "mensagem": "oi",
+        "data_hora": "12/05/2026 01:24:54"
+    },
+    {
+        "usuario": "JoÃ£o Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:29:36"
+    },
+    {
+        "usuario": "JoÃ£o Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:29:39"
+    },
+    {
+        "usuario": "João Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:32:18"
+    },
+    {
+        "usuario": "João Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "12/05/2026 01:33:55"
+    },
+    {
+        "usuario": "João Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "13/05/2026 12:42:40"
+    },
+    {
+        "usuario": "pepe",
+        "mensagem": "oi",
+        "data_hora": "13/05/2026 13:00:18"
+    },
+    {
+        "usuario": "João Silva",
+        "mensagem": "Tive um problema na corrida",
+        "data_hora": "13/05/2026 13:18:09"
     }
 ]

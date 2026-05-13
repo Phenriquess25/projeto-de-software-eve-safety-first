@@ -29,3 +29,23 @@ def buscar_usuario_por_cpf(cpf):
         if usuario["cpf"] == cpf:
             return usuario
     return None
+
+
+def adicionar_avaliacao_motorista(cpf, avaliacao):
+    dados = ler_dados(ARQUIVO)
+
+    for usuario in dados:
+        if usuario["cpf"] == cpf and usuario.get("tipo_usuario") == "motorista":
+            avaliacoes = usuario.get("avaliacoes", [])
+            avaliacoes.append(avaliacao)
+            usuario["avaliacoes"] = avaliacoes
+
+            total = len(avaliacoes)
+            media = round(sum(item["nota"] for item in avaliacoes) / total, 2)
+            usuario["total_avaliacoes"] = total
+            usuario["media_avaliacoes"] = media
+
+            salvar_dados(ARQUIVO, dados)
+            return True
+
+    return False
