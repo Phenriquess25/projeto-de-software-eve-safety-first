@@ -268,9 +268,27 @@
                 "origem": "Shopping Mall",
                 "destino": "Escola",
                 "distancia": 6.35
+            },
+            {
+                "nota": 5,
+                "comentario": "Atendimento excelente durante a corrida.",
+                "origem": "Aeroporto",
+                "destino": "Escola",
+                "distancia": 7.7
             }
         ],
-        "total_avaliacoes": 2,
-        "media_avaliacoes": 4.0
+        "total_avaliacoes": 3,
+        "media_avaliacoes": 4.33
+    },
+    {
+        "id_usuario": "b0f91caa-18e6-405e-965c-9ae083dbb272",
+        "nome_completo": "231321",
+        "cpf": "",
+        "email": "321321",
+        "senha": "",
+        "telefone": "321321",
+        "tipo_usuario": "passageiro",
+        "status_conta": false,
+        "historico": []
     }
 ]

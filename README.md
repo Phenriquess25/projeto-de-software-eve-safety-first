@@ -161,6 +161,7 @@ class CentralCorridas:
 * [Polimorfismo](docss/polimorfismo.md)
 * [Funcionalidades](docss/documentacao_funcionalidades.md)
 * [Factory Method](docss/factory_method.md)
+* [Padrões Estrutural e Comportamental](docss/padroes_estrutural_comportamental.md)
 
 ---
 
@@ -224,5 +225,30 @@ python teste_factory.py
 * Tratamento de Erros
 * Polimorfismo em ação
 
+---
+
+## Teste dos Padrões Estrutural e Comportamental
+
+Para demonstrar o Decorator (Estrutural) e Mediator (Comportamental):
+
+```bash
+python teste_padroes_estrutural_comportamental.py
 ```
+
+### O que é testado
+
+**Padrão Estrutural - Decorator:**
+* Corrida simples e com decoradores
+* Composição dinâmica de funcionalidades
+* Cálculo de tarifas complexas
+* Construtor fluente para facilitar uso
+
+**Padrão Comportamental - Mediator:**
+* Centralização de comunicação entre componentes
+* Solicitação e finalização de corridas
+* Processamento de pagamentos
+* Envio de mensagens de suporte
+* Sistema de observadores para eventos
+
 ```
+
